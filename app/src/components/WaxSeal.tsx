@@ -2,12 +2,12 @@
 // src/components/WaxSeal.tsx
 import { useEffect, useRef } from 'react'
 
-function adj(hex: string, amt: number) {
+function adj(hex: string, amt: number, alpha?: number) {
   const n = parseInt(hex.replace('#', ''), 16)
   const r = Math.min(255, Math.max(0, (n >> 16) + amt))
   const g = Math.min(255, Math.max(0, ((n >> 8) & 255) + amt))
   const b = Math.min(255, Math.max(0, (n & 255) + amt))
-  return `rgb(${r},${g},${b})`
+  return alpha !== undefined ? `rgba(${r},${g},${b},${alpha})` : `rgb(${r},${g},${b})`
 }
 
 interface Props {
@@ -43,7 +43,7 @@ export default function WaxSeal({ color, symbol, size = 60, imgData = null, anim
       const dr = r * (0.88 + Math.sin(i * 2.1) * 0.08)
       const bx = cx + Math.cos(a) * dr, by = cy + Math.sin(a) * dr
       const dg = ctx.createRadialGradient(bx, by, 0, bx, by, r * .22)
-      dg.addColorStop(0, adj(color, 28) + '99'); dg.addColorStop(1, 'transparent')
+      dg.addColorStop(0, adj(color, 28, 0.6)); dg.addColorStop(1, 'transparent')
       ctx.beginPath(); ctx.arc(bx, by, r * .22, 0, Math.PI * 2); ctx.fillStyle = dg; ctx.fill()
     }
 
@@ -59,7 +59,7 @@ export default function WaxSeal({ color, symbol, size = 60, imgData = null, anim
         ctx.beginPath(); ctx.arc(cx, cy, r * .6, 0, Math.PI * 2); ctx.clip()
         ctx.drawImage(img, cx - r * .6, cy - r * .6, r * 1.2, r * 1.2)
         ctx.globalCompositeOperation = 'multiply'
-        ctx.fillStyle = adj(color, -15) + '88'
+        ctx.fillStyle = adj(color, -15, 0.53)
         ctx.fillRect(cx - r * .6, cy - r * .6, r * 1.2, r * 1.2)
         ctx.restore()
         ctx.beginPath(); ctx.arc(cx, cy, r * .62, 0, Math.PI * 2)
