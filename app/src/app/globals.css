@@ -1,23 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --paper:      #f7f2e8;
-  --paper-warm: #ede5d0;
-  --paper-mid:  #e8dfc8;
-  --cream:      #faf6ee;
-  --ink:        #1c1410;
-  --ink-soft:   #4a3f35;
-  --ink-faint:  #9a8878;
-  --rust:       #c4622d;
-  --rust-dim:   rgba(196,98,45,0.14);
-  --gold:       #d4a853;
-  --gold-dim:   rgba(212,168,83,0.25);
-  --dark:       #0e0a06;
-  --serif:      'Instrument Serif', Georgia, serif;
-  --body:       'Crimson Pro', Georgia, serif;
+  /* Modern Dark Theme Palette */
+  --bg-base:    #09090b;
+  --bg-panel:   #121214;
+  --bg-panel-h: #1a1a1e;
+  --text-main:  #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-faint: #52525b;
+  
+  --accent:     #d4a853;
+  --accent-2:   #b07830;
+  --accent-dim: rgba(212,168,83,0.1);
+  --border:     rgba(255,255,255,0.06);
+  --border-hov: rgba(255,255,255,0.12);
+  
+  /* Fonts */
+  --display:    'Outfit', sans-serif;
+  --body:       'Inter', sans-serif;
   --mono:       'DM Mono', 'Courier New', monospace;
+
+  /* Legacy aliases to prevent breakage in other pages while refactoring */
+  --paper:      var(--bg-base);
+  --paper-warm: var(--bg-panel);
+  --paper-mid:  var(--bg-panel-h);
+  --cream:      var(--bg-panel);
+  --ink:        var(--text-main);
+  --ink-soft:   var(--text-muted);
+  --ink-faint:  var(--text-faint);
+  --rust:       var(--accent);
+  --rust-dim:   var(--accent-dim);
+  --gold:       var(--accent);
+  --gold-dim:   var(--accent-dim);
+  --dark:       #000000;
+  --serif:      var(--display);
 }
 
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -48,3 +66,90 @@ body {
 @keyframes shimmer     { 0%,100%{opacity:0.5} 50%{opacity:1} }
 @keyframes spin        { to{transform:rotate(360deg)} }
 @keyframes stampDown   { 0%{transform:translateY(-28px) scale(1.08);opacity:0} 65%{transform:translateY(3px) scale(0.97)} 100%{transform:translateY(0) scale(1);opacity:1} }
+
+/* ── Modern UI Components ───────────────────────────────────── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--border-hov);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--text-main);
+  color: var(--bg-base);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background: var(--text-faint);
+  color: var(--bg-panel-h);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.input-modern {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--body);
+  color: var(--text-main);
+  font-size: 15px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-modern:focus {
+  border-color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+}

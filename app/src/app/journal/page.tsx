@@ -150,7 +150,8 @@ export default function JournalPage() {
                 To be opened on
               </p>
               <h2 style={{ fontFamily:'var(--serif)', fontSize:34, color:'#1c1410', margin:0 }}>
-                {new Date(entry.delivery_at).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
+                <span style={{ fontSize:16, marginRight:8 }}>📮</span>
+                {new Date(entry.delivery_at).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})} at {new Date(entry.delivery_at).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}
               </h2>
             </div>
             

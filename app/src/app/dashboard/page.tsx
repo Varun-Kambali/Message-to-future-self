@@ -234,9 +234,12 @@ export default function DashboardPage() {
                       {c.prompt || 'Personal reflection'}
                     </p>
                     <p style={{ fontFamily:'var(--mono)', fontSize:11, color:'rgba(255,255,255,0.35)', letterSpacing:'0.1em' }}>
-                      <span style={{ color: 'rgba(212,168,83,0.9)' }}>{c.type.toUpperCase()}</span> &nbsp;·&nbsp; {c.status === 'delivered'
-                        ? `✓ Delivered ${new Date(c.delivered_at!).toLocaleDateString('en-US',{month:'long',year:'numeric'})}`
-                        : `🔒 Opens ${new Date(c.delivery_at).toLocaleDateString('en-US',{month:'long',year:'numeric'})}`}
+                      <span style={{ color: 'rgba(212,168,83,0.9)' }}>{c.type.toUpperCase()}</span> &nbsp;·&nbsp; 
+                      <span style={{ fontFamily:'var(--mono)', fontSize:10, color:'var(--text-faint)', letterSpacing:'0.04em' }}>
+                        {c.status === 'delivered'
+                        ? `✓ Delivered ${new Date(c.delivered_at!).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})} at ${new Date(c.delivered_at!).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}`
+                        : `🔒 Opens ${new Date(c.delivery_at).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})} at ${new Date(c.delivery_at).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}`}
+                      </span>
                     </p>
                   </div>
                   <span style={{ color:'rgba(255,255,255,0.15)', fontSize:28, transition:'color 0.4s' }}>›</span>

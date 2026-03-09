@@ -45,6 +45,7 @@ create table if not exists public.capsules (
   seal_image   text,                    -- storage path in seal-art bucket
   status       text        not null default 'sealed' check (status in ('sealed','delivered','failed')),
   delivered_at timestamptz,
+  recipient_email text,
   email_sent   boolean     not null default false,
   created_at   timestamptz not null default now(),
   updated_at   timestamptz not null default now()

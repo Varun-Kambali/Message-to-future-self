@@ -24,6 +24,7 @@ export interface Capsule {
   transcript:   string | null
   prompt:       string | null
   delivery_at:  string
+  recipient_email: string | null
   seal_color:   string
   seal_emoji:   string
   seal_image:   string | null
@@ -43,6 +44,7 @@ export interface CreateCapsulePayload {
   transcript?: string
   prompt?:     string
   delivery_at: string
+  recipient_email?: string
   seal_color?: string
   seal_emoji?: string
 }
